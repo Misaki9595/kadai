@@ -1,0 +1,335 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>はじめてのthree.js</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+  color: #aaa;
+  font-family:Monospace;
+  font-size:13px;
+  text-align:center;
+  font-weight: bold;
+ 
+  background-color: #444;
+  margin: 0px;
+  overflow: hidden;
+}
+ 
+#info {
+  color:#ccc;
+  position: absolute;
+  top: 0px; width: 100%;
+  padding: 0px;
+}
+ 
+a {
+  color: red;
+}
+</style>
+</head>
+ 
+<body>
+<div id="container"></div>
+<div id="info">
+  <a href="http://threejs.org" target="_blank">three.js</a>へようこそ</br>
+  左ボタンのドラッグ：回転、右ボタンのドラッグ：平行移動、ホイール：ズーム、
+</div>
+ 
+<!-- 以下のライブラリの配置はそのままで構わない -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
+<script src="TrackballControls.js"></script>
+<script>
+ 
+// Three.js revision 85 is used.
+ 
+/* global THREE */
+ 
+(function() {
+  "use strict";
+  
+  var container;
+  var camera, controls, light, scene, renderer;
+  var mesh, mesh1, mesh2, mesh3, mesh4, mesh5, mesh6, zimen;
+ 
+ var texture, texture1, texture2, texture3, texture4, texture5, texture6;
+ var loader = new THREE.TextureLoader();
+ var loader1 = new THREE.TextureLoader();
+ var loader2 = new THREE.TextureLoader();
+ var loader3 = new THREE.TextureLoader();
+ var loader4 = new THREE.TextureLoader();
+ var loader5 = new THREE.TextureLoader();
+ var loader6 = new THREE.TextureLoader();
+  
+ 
+  loader.load('images/haikei1.png', function (x1) {
+    texture = x1;
+
+  });
+
+  loader1.load('images/haikei2.png', function (x2) {
+    texture1 = x2;
+
+  });
+
+    loader2.load('images/haikei3.png', function (x3) {
+    texture2 = x3;
+
+  });
+
+    loader3.load('images/haikei4.png', function (x4) {
+    texture3 = x4;
+
+  });
+
+    loader4.load('images/haikei5.png', function (x5) {
+    texture4 = x5;
+
+  });
+
+    loader5.load('images/haikei6.png', function (x6) {
+    texture5 = x6;
+
+  });
+
+    loader6.load('images/haikei7.png', function (x7) {
+    texture6 = x7;
+
+    init();
+    animate();
+  });
+ //   init();
+ //   animate();
+  
+ 
+  function init() {
+ 
+    // (1) シーンの作成 （変更しない）
+    scene = new THREE.Scene();        
+ 
+    // (2) カメラの作成 （変更しない）
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 150;
+ 
+    // カメラをトラックボールで動かす （変更しない）
+    controls = new THREE.TrackballControls(camera);
+    controls.addEventListener('change', render);
+ 
+    // (4) ライティング　平行光線＋環境光（変更しない）
+    light = new THREE.DirectionalLight(0xffffff);
+    light.position.set(0, 0, 0);
+    light.castShadow = true;
+    light.shadow.camera.top = 1024;
+    light.shadow.camera.bottom = -1024;
+    light.shadow.camera.left = -1024;
+    light.shadow.camera.right = 1024;
+    light.shadow.camera.near = 0;
+    light.shadow.camera.far = 1024;
+    scene.add(light);
+ 
+    light = new THREE.AmbientLight(0xffffff);
+    scene.add(light);
+ 
+ 
+    // (5)表示する物体の作成
+    var geometry, material; 
+ 
+    // 円柱（1）   
+    geometry = new THREE.CylinderGeometry(250, 250, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture,
+      alphaTest:0.2,
+
+    });
+    mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = 0;
+    mesh.position.y = 75;
+    mesh.position.z = 0;
+    mesh.castShadow = true;
+
+    // 円柱（2）   
+    geometry = new THREE.CylinderGeometry(235, 235, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture1,
+      alphaTest:0.2,
+
+    });
+    mesh1 = new THREE.Mesh(geometry, material);
+    mesh1.position.x = 0;
+    mesh1.position.y = 75;
+    mesh1.position.z = 0;
+    mesh1.castShadow = true;
+
+
+    // 円柱（3）   
+
+    geometry = new THREE.CylinderGeometry(220, 220, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture2,
+      alphaTest:0.2,
+      
+    });
+    mesh2 = new THREE.Mesh(geometry, material);
+    mesh2.position.x = 0;
+    mesh2.position.y = 75;
+    mesh2.position.z = 0;
+    mesh2.castShadow = true;
+
+    // 円柱（4）   
+    geometry = new THREE.CylinderGeometry(205, 205, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture3,
+      alphaTest:0.2,
+
+    });
+    mesh3 = new THREE.Mesh(geometry, material);
+    mesh3.position.x = 0;
+    mesh3.position.y = 75;
+    mesh3.position.z = 0;
+    mesh3.castShadow = true;
+
+    // 円柱（5）  
+
+    geometry = new THREE.CylinderGeometry(190, 190, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture4,
+      alphaTest:0.2,
+
+    });
+    mesh4 = new THREE.Mesh(geometry, material);
+    mesh4.position.x = 0;
+    mesh4.position.y = 75;
+    mesh4.position.z = 0;
+    mesh4.castShadow = true;
+
+    // 円柱（6）  
+
+    geometry = new THREE.CylinderGeometry(178, 178, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture6,
+      alphaTest:0.2,
+
+    });
+    mesh6 = new THREE.Mesh(geometry, material);
+    mesh6.position.x = 0;
+    mesh6.position.y = 75;
+    mesh6.position.z = 0;
+    mesh6.castShadow = true;
+
+    // 円柱（7）   
+    geometry = new THREE.CylinderGeometry(165, 165, 150, 50, 50, true);
+    material = new THREE.MeshPhongMaterial({
+      side: THREE.DoubleSide,
+      map: texture5,
+      alphaTest:0.2,
+
+    });
+    mesh5 = new THREE.Mesh(geometry, material);
+    mesh5.position.x = 0;
+    mesh5.position.y = 75;
+    mesh5.position.z = 0;
+    mesh5.castShadow = true;
+
+    entyu.add(mesh);
+    entyu.add(mesh1);
+    entyu.add(mesh2);
+    entyu.add(mesh3);
+    entyu.add(mesh4);
+    entyu.add(mesh5);
+    entyu.add(mesh6);
+
+    scene.add(entyu);
+    
+    
+ //地面（PlaneGeometry）の生成
+    var zimen =  new THREE.Mesh(
+                      new THREE.CircleGeometry(400, 400),
+                      new THREE.MeshLambertMaterial({
+                          side: THREE.DoubleSide,
+                          color: 0x000000
+                      })
+                  );                      
+    // 影の有効化          
+    zimen.receiveShadow = true;
+    zimen.rotation.x = -Math.PI/2;
+    
+
+    // シーンオブジェクトに追加 
+    scene.add(zimen);              
+ 
+ 
+ 
+    // scene.fog = new THREE.FogExp2( 0xcccccc, 0.001 );
+ 
+    // (6)レンダリング （変更しない）
+    renderer = new THREE.WebGLRenderer( { antialias: false } );
+ 
+    //影の有効化（レンダラー）
+    renderer.shadowMap.enabled = true;
+ 
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor("#222222", 1 );
+ 
+    container = document.getElementById( 'container' );
+    container.appendChild( renderer.domElement );
+ 
+    window.addEventListener( 'resize', onWindowResize, false );
+  }
+
+    var entyu = new THREE.Group();
+ 
+  // ウインドウサイズを変えたときのアクション（変更しない）
+  function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      controls.handleResize();
+      render();
+  }
+ 
+  // アニメーションの実行（無限ループ）
+    let theta = 0;
+
+
+  function animate() {
+      requestAnimationFrame(animate);
+      controls.update();    
+      addEventListener("keydown", keydownfunc, false);
+//      addEventListener("keyup", keyupfunc, false);
+
+            theta += 0.03;
+            entyu.rotation.y = theta*0.15;
+                
+      function keydownfunc(event){
+          var keyCode = event.keyCode; 
+
+            if(keyCode == 37){
+                theta -= 0.0005;
+                entyu.rotation.y = theta ;
+            }
+      }
+
+
+      render();
+
+
+  }
+ 
+  function render() {
+      renderer.render(scene, camera);
+  }
+ 
+})();
+ 
+</script>
+</body>
+</html>
