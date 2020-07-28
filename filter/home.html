@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/kadai.css">
+<link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet" />
+    <title>home</title>
+</head>
+
+
+
+<body>
+<h1>M's Filter </h1>
+<h2>ファイルを選択を押して画像を選択し、画像の位置のバーを動かすと画像が表示されます。</h2>
+<div class="upload"><input type="file" name="file" id="file" accept="image/*"></div>
+
+<figure class="filter1">
+<canvas id="canvas"></canvas>
+</figure>
+
+<figure class="filter2">
+<canvas id="canvas2"></canvas>
+</figure>
+
+<figure class="filter3">
+<canvas id="canvas3"></canvas>
+</figure>
+
+<figure class="filter4">
+<canvas id="canvas4"></canvas>
+</figure>
+
+
+
+<figure class="filter5">
+<canvas id="canvas5" style="border:1px solid blue;"></canvas>
+</figure>
+<div id="posi">
+<input type="range" id="size" min="-350" max="0" value="125"><span>画像の位置</span>
+</div>
+
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+
+<script>
+var p_position =125;
+var file = document.getElementById('file');
+var canvas = document.getElementById('canvas');
+var canvas2 = document.getElementById('canvas2');
+var canvas3 = document.getElementById('canvas3');
+var canvas4 = document.getElementById('canvas4');
+var canvas5 = document.getElementById('canvas5');
+var canvasWidth = 500;
+var canvasHeight = 500;
+var uploadImgSrc;
+
+    
+canvas.width = canvasWidth;
+canvas.height = canvasHeight;
+canvas2.width = canvasWidth;
+canvas2.height = canvasHeight;
+canvas3.width = canvasWidth;
+canvas3.height = canvasHeight;
+canvas4.width = canvasWidth;
+canvas4.height = canvasHeight;
+canvas5.width = canvasWidth;
+canvas5.height = canvasHeight;
+
+
+var ctx = canvas.getContext('2d');
+var ctx2 = canvas2.getContext('2d');
+var ctx3 = canvas3.getContext('2d');
+var ctx4 = canvas4.getContext('2d');
+var ctx5 = canvas5.getContext('2d');
+
+function loadLocalImage(e) {
+    var fileData = e.target.files[0];
+
+    if(!fileData.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+    }
+
+
+    var reader = new FileReader();
+
+    reader.onload = function() {
+
+        uploadImgSrc = reader.result;
+        canvasDraw();
+    }
+
+    reader.readAsDataURL(fileData);
+}
+
+file.addEventListener('change', loadLocalImage, false);
+
+function canvasDraw(imgSrc) {
+
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+
+    var img = new Image();
+    img.src = uploadImgSrc;
+    
+
+    img.onload = function() {
+        $("#size").on("change",function(){
+        const a =$("#size").val();
+        p_position=a;
+        ctx.drawImage(img,(a), 0, img.width*(canvasHeight/img.height), canvasHeight);
+});
+
+
+    }
+}
+
+
+
+//---------------------------------------------------
+
+function loadLocalImage2(e) {
+    var fileData2 = e.target.files[0];
+
+    if(!fileData2.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+    }
+
+
+    var reader2 = new FileReader();
+
+    reader2.onload = function() {
+
+        uploadImgSrc = reader2.result;
+        canvasDraw2();
+    }
+
+    reader2.readAsDataURL(fileData2);
+}
+
+file.addEventListener('change', loadLocalImage2, false);
+
+function canvasDraw2(imgSrc2) {
+
+    ctx2.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+
+    var img2 = new Image();
+    img2.src = uploadImgSrc;
+    img2.onload = function() {
+        $("#size").on("change",function(){
+        const a =$("#size").val();
+        ctx2.drawImage(img2,(a), 0, img2.width*(canvasHeight/img2.height), canvasHeight);
+});
+    }
+
+}
+//---------------------------------------------------
+function loadLocalImage3(e) {
+    var fileData3 = e.target.files[0];
+
+    if(!fileData3.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+    }
+
+
+    var reader3 = new FileReader();
+
+    reader3.onload = function() {
+
+        uploadImgSrc = reader3.result;
+        canvasDraw3();
+    }
+
+    reader3.readAsDataURL(fileData3);
+}
+
+file.addEventListener('change', loadLocalImage3, false);
+
+function canvasDraw3(imgSrc3) {
+
+    ctx3.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+
+    var img3 = new Image();
+    img3.src = uploadImgSrc;
+    img3.onload = function() {
+        $("#size").on("change",function(){
+        const a =$("#size").val();
+        ctx3.drawImage(img3,(a), 0, img3.width*(canvasHeight/img3.height), canvasHeight);
+});
+    }
+
+}
+    
+//---------------------------------------------------
+
+function loadLocalImage4(e) {
+    var fileData4 = e.target.files[0];
+
+    if(!fileData4.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+    }
+
+
+    var reader4 = new FileReader();
+
+    reader4.onload = function() {
+
+        uploadImgSrc = reader4.result;
+        canvasDraw4();
+    }
+
+    reader4.readAsDataURL(fileData4);
+}
+
+file.addEventListener('change', loadLocalImage4, false);
+
+function canvasDraw4(imgSrc4) {
+
+    ctx4.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+
+    var img4 = new Image();
+    img4.src = uploadImgSrc;
+    img4.onload = function() {
+        $("#size").on("change",function(){
+        const a =$("#size").val();
+        ctx4.drawImage(img4,(a), 0, img4.width*(canvasHeight/img4.height), canvasHeight);
+});
+    }
+
+}
+
+//---------------------------------------------------
+
+//---------------------------------------------------
+
+function loadLocalImage5(e) {
+    var fileData5 = e.target.files[0];
+
+    if(!fileData5.type.match('image.*')) {
+        alert('画像を選択してください');
+        return;
+    }
+
+
+    var reader5 = new FileReader();
+
+    reader5.onload = function() {
+
+        uploadImgSrc = reader5.result;
+        canvasDraw5();
+    }
+
+    reader5.readAsDataURL(fileData5);
+}
+
+file.addEventListener('change', loadLocalImage5, false);
+
+function canvasDraw5(imgSrc5) {
+
+    ctx5.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    var img5 = new Image();
+    img5.src = uploadImgSrc;
+    img5.onload = function() {
+        $("#size").on("change",function(){
+        const a =$("#size").val();
+        ctx5.drawImage(img5,(a), 0, img5.width*(canvasHeight/img5.height), canvasHeight);
+        addText();
+});
+
+    }
+
+}
+// Canvas上にテキストを表示する
+function addText() {
+    ctx5.fillStyle = 'rgba(193, 193, 193, 0.77)';
+    ctx5.fillRect(250, 450, 250, 50);
+
+    ctx5.font = "bold 30px 'Kokoro' ";
+    ctx5.textAlign = 'center';
+    ctx5.textBaseline = 'middle';
+    ctx5.fillStyle = '#ff5555';
+    ctx5.fillText('Original Image', 375, 473);
+}
+
+    
+    
+       
+
+</script>
+<!--
+とても参考にさせていただいたサイトたち
+https://www.tam-tam.co.jp/tipsnote/javascript/post13538.html
+http://untrace.co.jp/blog/css-filter/
+https://mementoo.info/archives/1617
+https://www.cssfilters.co/
+-->
+</body>
+</html>

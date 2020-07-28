@@ -1,0 +1,126 @@
+body{
+    text-align: center;
+    margin: 40px;
+    padding-left: 15px;
+
+    background: rgba(234, 255, 244, 0.48);
+}
+h1{color: rgba(93, 59, 30, 0.8);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: 3em;
+    margin-right: 3em;
+    font-size: 80px;
+    background: linear-gradient(90deg, #7de2bf, rgba(255, 98, 0, 0.79))
+}
+
+.filter2{
+    float: left;
+-webkit-filter: contrast(100%) brightness(110%) saturate(160%) sepia(30%) hue-rotate(350deg);
+filter: contrast(100%) brightness(110%) saturate(160%) sepia(30%) hue-rotate(350deg);
+}
+.filter2::before{
+    content: "";
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    top: 0;
+/*    left: 50%;*/
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    background: linear-gradient(125deg, #009, #f00),fixed;
+  background-size: cover;
+}
+
+.filter3{
+    float: left;
+-webkit-filter: contrast(150%) brightness(90%) sepia(50%) saturate(100%);
+filter:  contrast(150%) brightness(90%) sepia(50%) saturate(100%);
+}
+.filter3::before{
+    content: "";
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    top: -100;
+/*    left: 50%;*/
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    background:radial-gradient(#0f4e80,#3b003b),fixed;
+  background-size: cover;
+}
+
+.filter1{
+    float: left;
+-webkit-filter: contrast(110%) brightness(110%) saturate(130%);
+filter: contrast(110%) brightness(110%) saturate(130%);
+}
+.filter1::before{
+    content: "";
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    top: 0;
+/*    left: 50%;*/
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.3;
+    background:radial-gradient(#f36abc,#f36abc),fixed;
+  background-size: cover;
+}
+
+
+.filter4{
+    float: left;
+-webkit-filter: contrast(79%) brightness(121%) saturate(106%) hue-rotate(302deg);
+filter: contrast(79%) brightness(121%) saturate(106%) hue-rotate(320deg);
+}
+.filter4::before{
+    content: "";
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    top: 0;
+/*    left: 50%;*/
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    background:radial-gradient(#00ff2d,#de78fd),fixed;
+  background-size: cover;
+/*background: #00ff2d;*/
+}
+
+.filter5{
+    float: center;
+    height: 500px;
+    width: 500px;
+}
+.filter5::before{
+
+}
+.filter6{
+    float: left;
+    height: 500px;
+    width: 500px;
+}
+.filter6::before{
+    content: "";
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+    top: 0;
+/*    left: 50%;*/
+    position: absolute;
+}
+#po{
+    clear: both;
+    float: left;
+    content: "";
+    display: inline-block; 
+}
